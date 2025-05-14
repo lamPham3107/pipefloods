@@ -1,0 +1,28 @@
+1.0.6
+- Fix Mobile Application Launch Crash Caused by Unity Advertisements
+- Make Unity Ads package Manually installed by Customer (Optional)
+- Update PostProcessor Editor Script
+
+1.0.5
+- Upgrade Package to Unity 2020 or Higher
+- Update Advertisements Scripts (Admob, Unity , Chartboost)
+
+1.0.4
+- Upgrade Package
+- Update Ads Scripts
+- Update Editors
+- Update Manual
+
+1.0.3
+- Ability to add multiple paths in the same level
+
+1.0.2
+- Missions Lock Feature
+
+1.0.1
+- Fix DirtyUtil Script Compatibility
+- Improve Admob Script
+- Update Ads Manager
+
+1.0.0
+- Initial Version
