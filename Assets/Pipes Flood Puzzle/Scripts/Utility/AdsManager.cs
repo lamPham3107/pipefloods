@@ -15,6 +15,11 @@ public class AdsManager : SingletonMonoBehaviour<AdsManager>
     }
     #endregion
 
+    private void OnEnable()
+    {
+        SetupAds();
+    }
+
     public void SetupAds()
     {
         AdmobManager.ins.Setup();

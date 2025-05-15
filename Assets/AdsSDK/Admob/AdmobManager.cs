@@ -272,7 +272,6 @@ public class AdmobManager : SingletonMonoBehaviour<AdmobManager>
         else
         {
             AdsManager.ins.showingVideoAds = true;
-            AdsManager.ins.HideBanner();
             _appOpenAd.Show();
             FirebaseManager.ins.LogEvent("af_AOA_" + AdsMediation.ADMOB.ToString());
             return true;
@@ -382,7 +381,6 @@ public class AdmobManager : SingletonMonoBehaviour<AdmobManager>
             Debug.Log("Destroying app open ad.");
             _appOpenAd.Destroy();
             _appOpenAd = null;
-            AdsManager.ins.ShowBanner();
         }
     }
     #endregion

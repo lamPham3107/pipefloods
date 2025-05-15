@@ -84,7 +84,7 @@ public class AdsSDK : SingletonMonoBehaviour<AdsSDK>
             && FirebaseManager.ins != null);
 
         #region Setup Ads
-        AdsManager.ins.SetupAds();
+        //AdsManager.ins.SetupAds();
         #endregion
 
         #region Setup Firebase
@@ -102,7 +102,7 @@ public class AdsSDK : SingletonMonoBehaviour<AdsSDK>
         PlayerPrefs.SetInt("FirstGame", 1);
 
         AdsManager.ins.ShowAOA();
-        //AdsManager.ins.ShowBanner();    
+        AdsManager.ins.ShowBanner();    
 
         _isAdsSetupDone = true;       
         FirebaseManager.ins.LogEvent("open_app");

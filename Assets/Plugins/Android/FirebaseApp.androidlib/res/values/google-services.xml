@@ -1,9 +1,10 @@
 <?xml version='1.0' encoding='utf-8'?>
-<resources xmlns:tools="http://schemas.android.com/tools" tools:keep="@string/gcm_defaultSenderId,@string/google_storage_bucket,@string/project_id,@string/google_api_key,@string/google_crash_reporting_api_key,@string/google_app_id">
-  <string name="gcm_defaultSenderId" translatable="false">243528517259</string>
-  <string name="google_storage_bucket" translatable="false">pipe-puzzle-926ab.firebasestorage.app</string>
-  <string name="project_id" translatable="false">pipe-puzzle-926ab</string>
-  <string name="google_api_key" translatable="false">AIzaSyDgKieK6zID3ZYshrh65uRk_AM5J9UvwfA</string>
-  <string name="google_crash_reporting_api_key" translatable="false">AIzaSyDgKieK6zID3ZYshrh65uRk_AM5J9UvwfA</string>
-  <string name="google_app_id" translatable="false">1:243528517259:android:ac877c433a268d443d768e</string>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:keep="@string/gcm_defaultSenderId,@string/google_storage_bucket,@string/project_id,@string/google_api_key,@string/google_crash_reporting_api_key,@string/google_app_id,@string/default_web_client_id">
+  <string name="gcm_defaultSenderId" translatable="false">1045300305691</string>
+  <string name="google_storage_bucket" translatable="false">bamboo-pipes-connect-2025.firebasestorage.app</string>
+  <string name="project_id" translatable="false">bamboo-pipes-connect-2025</string>
+  <string name="google_api_key" translatable="false">AIzaSyBjPkXyeGpI7mtEI0V3Y-QupbgnmWTOYzE</string>
+  <string name="google_crash_reporting_api_key" translatable="false">AIzaSyBjPkXyeGpI7mtEI0V3Y-QupbgnmWTOYzE</string>
+  <string name="google_app_id" translatable="false">1:1045300305691:android:b0df71c91f31e12db97dbe</string>
+  <string name="default_web_client_id" translatable="false">1045300305691-jfuef45goppvtn2tfudnmsadtt15p23t.apps.googleusercontent.com</string>
 </resources>

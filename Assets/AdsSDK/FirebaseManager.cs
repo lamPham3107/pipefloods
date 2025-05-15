@@ -487,6 +487,7 @@ public class FirebaseManager : SingletonMonoBehaviour<FirebaseManager>
     /// <param name="completionHandler"></param>
     public void fetch(Action<bool> completionHandler)
     {
+        return;
         try
         {
             Dictionary<string, object> defaults = new Dictionary<string, object>();
