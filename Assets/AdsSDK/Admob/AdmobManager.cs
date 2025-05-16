@@ -259,6 +259,7 @@ public class AdmobManager : SingletonMonoBehaviour<AdmobManager>
     #region AOA_ADS
 
     private static AppOpenAd _appOpenAd;
+    public  bool isAOAShowing = false;
 
     public bool ShowAdIfAvailable()
     {
@@ -273,6 +274,7 @@ public class AdmobManager : SingletonMonoBehaviour<AdmobManager>
         {
             AdsManager.ins.showingVideoAds = true;
             _appOpenAd.Show();
+            isAOAShowing = true;
             FirebaseManager.ins.LogEvent("af_AOA_" + AdsMediation.ADMOB.ToString());
             return true;
         }
@@ -380,6 +382,7 @@ public class AdmobManager : SingletonMonoBehaviour<AdmobManager>
         {
             Debug.Log("Destroying app open ad.");
             _appOpenAd.Destroy();
+            isAOAShowing = false;
             _appOpenAd = null;
         }
     }

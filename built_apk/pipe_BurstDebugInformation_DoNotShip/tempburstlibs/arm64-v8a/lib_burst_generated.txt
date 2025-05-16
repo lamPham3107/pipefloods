@@ -34,6 +34,7 @@ Library: G:\unity_project\pipesflood\Temp\BurstOutput\tempburstlibs\arm64-v8a\li
 --assembly-defines=Unity.Collections;
 --assembly-defines=Unity.InternalAPIEngineBridge.001;
 --assembly-defines=Unity.Mathematics;
+--assembly-defines=Unity.TextMeshPro;
 --assembly-defines=UnityEngine;
 --generate-link-xml=Temp\burst.link.xml
 --temp-folder=G:\unity_project\pipesflood\Temp\Burst

@@ -101,8 +101,8 @@ public class AdsSDK : SingletonMonoBehaviour<AdsSDK>
 
         PlayerPrefs.SetInt("FirstGame", 1);
 
-        AdsManager.ins.ShowAOA();
-        AdsManager.ins.ShowBanner();    
+        //AdsManager.ins.ShowAOA();
+        //AdsManager.ins.ShowBanner();    
 
         _isAdsSetupDone = true;       
         FirebaseManager.ins.LogEvent("open_app");

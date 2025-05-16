@@ -185,9 +185,10 @@ public class AdsManager : SingletonMonoBehaviour<AdsManager>
     public void ShowAOA()
     {
         if (AdsSDK.ins.isNoAds) return;
-
+        Debug.Log("Show AOA");
         FirebaseManager.ins.LogEvent("af_AOA_attempt");
         AdmobManager.ins.ShowAdIfAvailable();
+
     }
 
     private void OnApplicationPause(bool paused)
@@ -208,7 +209,7 @@ public class AdsManager : SingletonMonoBehaviour<AdsManager>
             }
             else
             {
-                ShowAOA();
+               ShowAOA();
             }
         }
     }
