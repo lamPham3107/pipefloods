@@ -182,6 +182,7 @@ public class AdmobManager : SingletonMonoBehaviour<AdmobManager>
     {
         if (_bannerView == null) LoadBannerAd();
         _bannerView.Show();
+        Debug.Log("Show Banner");
     }
 
     public void HideBanner()

@@ -156,6 +156,7 @@ public class AdsManager : SingletonMonoBehaviour<AdsManager>
 
         if(AdsSDK.ins.bannerMediationNetwork.Equals(AdsMediation.ADMOB.ToString()))
         {
+            
             AdmobManager.ins.ShowBanner();
         }
         else if (AdsSDK.ins.bannerMediationNetwork.Equals(AdsMediation.MAX.ToString()))

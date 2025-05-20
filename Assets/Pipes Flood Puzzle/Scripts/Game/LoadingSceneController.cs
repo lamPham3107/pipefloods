@@ -64,6 +64,7 @@ public class LoadingSceneController : MonoBehaviour
         {
             yield return StartCoroutine(Fade.Instance.FadeIn());
         }
+        AdsManager.ins.ShowBanner();
         operation.allowSceneActivation = true;
 
 

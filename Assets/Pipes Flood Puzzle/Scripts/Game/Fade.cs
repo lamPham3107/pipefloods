@@ -31,13 +31,12 @@ public class Fade : MonoBehaviour
 
     public IEnumerator FadeIn()
     {
-        Debug.Log("Fadein");
+
         float t = fadeDuration;
         while (t > 0)
         {
             t -= Time.deltaTime;
             float alpha =  t/ fadeDuration;
-            Debug.Log(alpha);
             setAlpha(alpha);
             yield return null;
         }
