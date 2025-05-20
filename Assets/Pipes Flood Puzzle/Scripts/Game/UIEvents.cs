@@ -208,11 +208,11 @@ public class UIEvents : MonoBehaviour
 
 	public void LoadMissionsScene ()
 	{
-		AudioClips.instance.PlayButtonClickSFX ();
-		StartCoroutine (SceneLoader.LoadSceneAsync ("Missions"));
-		Debug.Log("Load Missions Scene");
-		AdsManager.ins.ShowMrec(true);
-	}
+        AudioClips.instance.PlayButtonClickSFX();
+        StartCoroutine(SceneLoader.LoadSceneAsync("Missions"));
+        Debug.Log("Load Missions Scene");
+        AdsManager.ins.ShowMrec(true);
+    }
 
 	public void LoadOptionsScene ()
 	{

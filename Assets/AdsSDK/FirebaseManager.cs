@@ -487,7 +487,6 @@ public class FirebaseManager : SingletonMonoBehaviour<FirebaseManager>
     /// <param name="completionHandler"></param>
     public void fetch(Action<bool> completionHandler)
     {
-        return;
         try
         {
             Dictionary<string, object> defaults = new Dictionary<string, object>();
@@ -557,11 +556,9 @@ public class FirebaseManager : SingletonMonoBehaviour<FirebaseManager>
             AdsSDK.ins.adsPriority = new List<AdsMediationPriority>();
             var priority_max = (int)Firebase.RemoteConfig.FirebaseRemoteConfig.DefaultInstance.GetValue(AdsMediation.MAX.ToString()).LongValue;
             var priority_admob = (int)Firebase.RemoteConfig.FirebaseRemoteConfig.DefaultInstance.GetValue(AdsMediation.ADMOB.ToString()).LongValue;
-            var priority_yandex = (int)Firebase.RemoteConfig.FirebaseRemoteConfig.DefaultInstance.GetValue(AdsMediation.YANDEX.ToString()).LongValue;
 
             if (priority_max >= 0) AdsSDK.ins.adsPriority.Add(new AdsMediationPriority(AdsMediation.MAX, priority_max));
             if (priority_admob >= 0) AdsSDK.ins.adsPriority.Add(new AdsMediationPriority(AdsMediation.ADMOB, priority_admob));
-            if (priority_yandex >= 0) AdsSDK.ins.adsPriority.Add(new AdsMediationPriority(AdsMediation.YANDEX, priority_yandex));
             #endregion
 
             is_remote_config_success = true;
