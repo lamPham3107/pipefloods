@@ -7,7 +7,10 @@ Library: D:\Project_Quick\New folder\pipefloods\Temp\BurstOutput\tempburstlibs\a
 --dump=Function
 --float-precision=Standard
 --target-framework=NetFramework
+--assembly-defines=Assembly-CSharp-firstpass;
 --assembly-defines=Assembly-CSharp;
+--assembly-defines=DOTween;
+--assembly-defines=DOTweenPro;
 --assembly-defines=Firebase.Analytics;
 --assembly-defines=Firebase.App;
 --assembly-defines=Firebase.Crashlytics;
@@ -34,6 +37,7 @@ Library: D:\Project_Quick\New folder\pipefloods\Temp\BurstOutput\tempburstlibs\a
 --assembly-defines=Unity.Collections;
 --assembly-defines=Unity.InternalAPIEngineBridge.001;
 --assembly-defines=Unity.Mathematics;
+--assembly-defines=Unity.TextMeshPro;
 --assembly-defines=UnityEngine;
 --generate-link-xml=Temp\burst.link.xml
 --temp-folder=D:\Project_Quick\New folder\pipefloods\Temp\Burst

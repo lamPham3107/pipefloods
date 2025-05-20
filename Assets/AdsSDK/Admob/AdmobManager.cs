@@ -199,10 +199,10 @@ public class AdmobManager : SingletonMonoBehaviour<AdmobManager>
             _bannerView = null;
         }
 
-        //AdSize adaptiveSize =
-        //        AdSize.GetCurrentOrientationAnchoredAdaptiveBannerAdSizeWithWidth(AdSize.FullWidth);
+        AdSize adaptiveSize =
+                AdSize.GetCurrentOrientationAnchoredAdaptiveBannerAdSizeWithWidth(AdSize.FullWidth);
 
-        _bannerView = new BannerView(_adUnitId_banner, AdSize.Banner, AdPosition.Bottom);
+        _bannerView = new BannerView(_adUnitId_banner, adaptiveSize, AdPosition.Bottom);
 
         var adRequest = new AdRequest();
 

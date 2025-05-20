@@ -2,17 +2,26 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI; 
+using UnityEngine.UI;
 
 public class LoadingSceneController : MonoBehaviour
 {
     public string sceneToLoad = "Main";
     public Slider progressBar;
     public TMP_Text progressText;
-    public Fade fadeController;
+
+    private float loadingSpeed = 0.2f;
     void Start()
     {
         StartCoroutine(LoadAsyncScene());
+    }
+
+    private void Update()
+    {
+        if(loadingSpeed < 0.4f && AdmobManager.ins != null && AdmobManager.ins.isAOAShowing)
+        {
+            loadingSpeed = 0.4f;
+        }
     }
 
     IEnumerator LoadAsyncScene()
@@ -23,30 +32,13 @@ public class LoadingSceneController : MonoBehaviour
         float fakeProgress = 0f;
 
         // Dừng lần lượt tại 20, 50, 90 (fake progress)
-        while (fakeProgress < 0.2f)
-        {
-            fakeProgress += Time.deltaTime * 0.2f; // tốc độ tăng có thể điều chỉnh
-            UpdateUI(fakeProgress);
-            yield return null;
-        }
-        UpdateUI(0.2f);
-        yield return new WaitForSeconds(1f);
-
-        while (fakeProgress < 0.5f)
-        {
-            fakeProgress += Time.deltaTime * 0.2f;
-            UpdateUI(fakeProgress);
-            yield return null;
-        }
-        UpdateUI(0.5f);
-        yield return new WaitForSeconds(2f);
-
         while (fakeProgress < 0.9f)
         {
-            fakeProgress += Time.deltaTime * 0.2f;
+            fakeProgress += Time.deltaTime * loadingSpeed; // tốc độ tăng có thể điều chỉnh
             UpdateUI(fakeProgress);
             yield return null;
         }
+
         UpdateUI(0.9f);
         yield return new WaitForSeconds(1f);
 
@@ -58,16 +50,12 @@ public class LoadingSceneController : MonoBehaviour
         yield return new WaitForSeconds(0.5f); // Optional
 
         AdsManager.ins.ShowAOA();
-        yield return new WaitUntil(() => !AdmobManager.ins.isAOAShowing);
-        // Sau khi AOA đóng → bắt đầu fade-in
-        if(Fade.Instance != null)
+
+        uiFade.ins.FadeInOut(() =>
         {
-            yield return StartCoroutine(Fade.Instance.FadeIn());
-        }
-        AdsManager.ins.ShowBanner();
-        operation.allowSceneActivation = true;
-
-
+            operation.allowSceneActivation = true;
+            AdsManager.ins.ShowBanner();
+        }, 0.75f);
     }
 
     void UpdateUI(float progress)
