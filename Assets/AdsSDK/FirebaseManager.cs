@@ -543,7 +543,7 @@ public class FirebaseManager : SingletonMonoBehaviour<FirebaseManager>
 
             //Chọn mạng để ưu tiên show Banner
             //MAX-YANDEX-ADMOB
-            AdsSDK.ins.bannerMediationNetwork = Firebase.RemoteConfig.FirebaseRemoteConfig.DefaultInstance.GetValue("aoaMediationNetwork").StringValue;
+            AdsSDK.ins.bannerMediationNetwork = Firebase.RemoteConfig.FirebaseRemoteConfig.DefaultInstance.GetValue("bannerMediationNetwork").StringValue;
 
             //Có sử dụng show lần lượt giữa các mediation không
             //True: Các mediation show lần lượt theo thứ tự ưu tiên, cái nào vừa show xong thì ưu tiên thấp nhất

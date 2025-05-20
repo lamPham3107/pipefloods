@@ -180,7 +180,7 @@ public class UIEvents : MonoBehaviour
 
 	public void WinDialogNextButtonEvent ()
 	{
-		AdsManager.ins.ShowInterstitial();
+
 		if (TableLevel.selectedLevel.ID == LevelsTable.levels.Count) {
 			LoadLevelsScene ();
 			return;
@@ -235,7 +235,6 @@ public class UIEvents : MonoBehaviour
 	public void LoadGameScene ()
 	{
 		AudioClips.instance.PlayButtonClickSFX ();
-		AdsManager.ins.ShowInterstitial();
         StartCoroutine (SceneLoader.LoadSceneAsync ("Game"));
 
 	}

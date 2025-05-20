@@ -563,6 +563,7 @@ public class GameManager : MonoBehaviour
 			WinDialog.instance.SetTime (Timer_origin.instance.timeInSeconds);
 			WinDialog.instance.SetBestScore (currentLevelData.bestScore);
 
+			AdsManager.ins.ShowInterstitial();
 			//Show win dialog
 			WinDialog.instance.Invoke("Show",2);
 			Debug.Log ("Level completed");
