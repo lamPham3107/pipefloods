@@ -7,7 +7,10 @@ Library: G:\unity_project\pipesflood\Temp\BurstOutput\tempburstlibs\armeabi-v7a\
 --dump=Function
 --float-precision=Standard
 --target-framework=NetFramework
+--assembly-defines=Assembly-CSharp-firstpass;
 --assembly-defines=Assembly-CSharp;
+--assembly-defines=DOTween;
+--assembly-defines=DOTweenPro;
 --assembly-defines=Firebase.Analytics;
 --assembly-defines=Firebase.App;
 --assembly-defines=Firebase.Crashlytics;

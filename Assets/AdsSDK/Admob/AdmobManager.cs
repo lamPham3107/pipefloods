@@ -60,10 +60,12 @@ public class AdmobManager : SingletonMonoBehaviour<AdmobManager>
                 _onInter_Finish = OnFinish;
 
                 interstitialAd.Show();
+                Debug.Log("Show Interstitial");
                 return true;
             }
             else
             {
+                Debug.Log("Interstitial ad is not ready yet.");
                 PrintStatus("Interstitial ad is not ready yet.");
                 FirebaseManager.ins.ads_inter_load_fail(AdsMediation.ADMOB.ToString());
 
@@ -265,7 +267,7 @@ public class AdmobManager : SingletonMonoBehaviour<AdmobManager>
     public bool ShowAdIfAvailable()
     {
 
-        //if (Application.isEditor) return true;
+        if (Application.isEditor) return true;
 
         if (!IsAdAvailable)
         {

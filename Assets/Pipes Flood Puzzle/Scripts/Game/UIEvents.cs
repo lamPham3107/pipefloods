@@ -180,6 +180,7 @@ public class UIEvents : MonoBehaviour
 
 	public void WinDialogNextButtonEvent ()
 	{
+		AdsManager.ins.ShowInterstitial();
 		if (TableLevel.selectedLevel.ID == LevelsTable.levels.Count) {
 			LoadLevelsScene ();
 			return;
@@ -209,8 +210,8 @@ public class UIEvents : MonoBehaviour
 	{
 		AudioClips.instance.PlayButtonClickSFX ();
 		StartCoroutine (SceneLoader.LoadSceneAsync ("Missions"));
-		//Debug.Log("Load Missions Scene");
-  //      AdsManager.ins.ShowMrec(true);
+		Debug.Log("Load Missions Scene");
+		AdsManager.ins.ShowMrec(true);
 	}
 
 	public void LoadOptionsScene ()
@@ -234,6 +235,8 @@ public class UIEvents : MonoBehaviour
 	public void LoadGameScene ()
 	{
 		AudioClips.instance.PlayButtonClickSFX ();
-		StartCoroutine (SceneLoader.LoadSceneAsync ("Game"));
+		AdsManager.ins.ShowInterstitial();
+        StartCoroutine (SceneLoader.LoadSceneAsync ("Game"));
+
 	}
 }

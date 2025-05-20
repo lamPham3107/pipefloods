@@ -565,7 +565,6 @@ public class GameManager : MonoBehaviour
 
 			//Show win dialog
 			WinDialog.instance.Invoke("Show",2);
-
 			Debug.Log ("Level completed");
 		}
 	}

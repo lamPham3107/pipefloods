@@ -31,7 +31,7 @@ public class LoadingSceneController : MonoBehaviour
 
         float fakeProgress = 0f;
 
-        // Dừng lần lượt tại 20, 50, 90 (fake progress)
+        // Dừng lần lượt tại  90 (fake progress)
         while (fakeProgress < 0.9f)
         {
             fakeProgress += Time.deltaTime * loadingSpeed; // tốc độ tăng có thể điều chỉnh

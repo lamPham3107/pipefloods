@@ -81,6 +81,7 @@ public class MaxManager : SingletonMonoBehaviour<MaxManager>
 
             if (MaxSdk.IsInterstitialReady(InterstitialAdUnitId))
             {
+                Debug.Log("Show Interstitial");
                 MaxSdk.ShowInterstitial(InterstitialAdUnitId);
                 return true;
             }
