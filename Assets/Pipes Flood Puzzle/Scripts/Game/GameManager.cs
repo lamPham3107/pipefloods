@@ -674,7 +674,8 @@ public class GameManager : MonoBehaviour
 	public void TimeOut(){
 		//show time out dialog
 		//AdsManager.instance.ShowAdvertisment (AdPackage.AdEvent.Event.ON_SHOW_TIMEOUT_DIALOG);
-		GameObject.Find ("TimeOutDialog").GetComponent<Dialog> ().Show (false);
+		AdsManager.ins.ShowInterstitial();
+        GameObject.Find ("TimeOutDialog").GetComponent<Dialog> ().Show (false);
 		//Debug.Log ("TimeOut");
 	}
 }

@@ -74,7 +74,8 @@ public class Progress : MonoBehaviour
 	/// <param name="currentTime">Current time.</param>
 	public void SetProgress (float currentTime)
 	{
-		fill.fillAmount = 1 - (currentTime / (Mission.selectedMission.levelsManagerComponent.starsTimePeriod * 4.0f * 2));
+
+        fill.fillAmount = 1 - (currentTime / (Mission.selectedMission.levelsManagerComponent.starsTimePeriod * 4.0f * 2));
 
 		if (currentTime > 0 && currentTime <= Mission.selectedMission.levelsManagerComponent.starsTimePeriod * 4.0f) {
 			SetUIThreeStars ();
@@ -83,19 +84,23 @@ public class Progress : MonoBehaviour
 			SetUITwoStars ();
 			starsCount = 2;
 			DropFirstStar ();
-		} else if (currentTime > (2.0f * Mission.selectedMission.levelsManagerComponent.starsTimePeriod) && currentTime <= (7.0f * Mission.selectedMission.levelsManagerComponent.starsTimePeriod)) {	
+		} else if (currentTime > (2.0f * Mission.selectedMission.levelsManagerComponent.starsTimePeriod) && currentTime <= (8.0f * Mission.selectedMission.levelsManagerComponent.starsTimePeriod)) {	
 			SetUIOneStar ();
 			starsCount = 1;
 			DropSecondStar ();
 		} else {
-			//0 Stars
-			SetUIZeroStars();
-			starsCount = 0;
-			DropThirdStar ();
+			if (GameManager.instance.isRunning)
+			{
+				//0 Stars
+				SetUIZeroStars();
+				starsCount = 0;
+				DropThirdStar();
 
-			Timer_origin.instance.Pause ();
-			GameManager.instance.isRunning = false;
-			Invoke ("FinishCallBack", 2);
+				Timer_origin.instance.Pause();
+				GameManager.instance.isRunning = false;
+				//Invoke("FinishCallBack", 2);
+				FinishCallBack();
+			}
 		}
 	}
 

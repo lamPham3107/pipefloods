@@ -35,7 +35,7 @@ public class Dialog : MonoBehaviour
 	{
 		if (playClickSFX)
 			AudioClips.instance.PlayButtonClickSFX ();
-		
+
 		BlackArea.Show ();
 		animator.SetBool ("Off", false);
 		animator.SetTrigger ("On");

@@ -129,6 +129,7 @@ public class AdsManager : SingletonMonoBehaviour<AdsManager>
     #region Reward
     public void ShowRewardedAd(string nameEvent = "", Action OnFinish = null, Action OnFail = null)
     {
+
         if (AdsSDK.ins.isMkt)
         {
             OnFinish?.Invoke();
@@ -138,6 +139,7 @@ public class AdsManager : SingletonMonoBehaviour<AdsManager>
         //Nếu dùng Max
         MaxManager.ins.ShowRewardedAd(nameEvent, () =>
         {
+
             if (OnFinish != null) OnFinish.Invoke();
         }, () =>
         {

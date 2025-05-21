@@ -88,10 +88,11 @@ public class UIEvents : MonoBehaviour
 	{
 		AudioClips.instance.PlayButtonClickSFX ();
 
-		if (value.name.Equals ("IncreaseTime")) {
+		if (value.name.Equals ("YesButton")) {
 			Debug.Log ("Increase Time Dialog : Yes button clicked");
-			Timer_origin.instance.ResetIncCounter ();
-			
+            AdsManager.ins.ShowRewardedAd();
+            Timer_origin.instance.ResetIncCounter ();
+
 			//AdsManager.instance.ShowAdvertisment (AdPackage.AdEvent.Event.ON_INCREASE_TIME);
 			//AdsManager.ins.ShowRewardedAd("MAX", () =>
 			//{
