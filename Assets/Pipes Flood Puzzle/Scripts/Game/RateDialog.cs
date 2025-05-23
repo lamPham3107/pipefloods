@@ -37,6 +37,8 @@ public class RateDialog : MonoBehaviour
 
         if (rateDialog != null && GameManager.isShowingRateDialog)
         {
+            Timer_origin.instance.Pause();
+            GameManager.instance.isRunning = false;
             ResetStars();
             rateDialog.SetActive(true);
         }
@@ -46,8 +48,9 @@ public class RateDialog : MonoBehaviour
 
         rateDialog.SetActive(false);
         GameManager.isShowingRateDialog = false;
+        Timer_origin.instance.Resume();
+        GameManager.instance.isRunning = true;
 
- 
         if (onCloseRateDialog != null)
             onCloseRateDialog.Invoke();
 
@@ -59,7 +62,7 @@ public class RateDialog : MonoBehaviour
         Debug.Log("Submit button clicked!");
 
         HideRateDialog();
-        GameManager.instance.Resume();
+
     }
 
     void OnStarClicked(int rating)
