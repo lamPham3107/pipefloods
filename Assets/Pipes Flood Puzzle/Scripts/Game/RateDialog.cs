@@ -37,8 +37,9 @@ public class RateDialog : MonoBehaviour
 
         if (rateDialog != null && GameManager.isShowingRateDialog)
         {
-            Timer_origin.instance.Pause();
             GameManager.instance.isRunning = false;
+            Timer_origin.instance.Pause();
+
             ResetStars();
             rateDialog.SetActive(true);
         }
