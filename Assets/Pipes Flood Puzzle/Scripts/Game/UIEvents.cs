@@ -239,4 +239,12 @@ public class UIEvents : MonoBehaviour
         StartCoroutine (SceneLoader.LoadSceneAsync ("Game"));
 
 	}
+	public void closeRateDialog()
+	{
+		RateDialog.instance.HideRateDialog();
+    }
+	public void SubmitButtonClick()
+	{
+        RateDialog.instance.Submit();
+    }
 }

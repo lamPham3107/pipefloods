@@ -190,6 +190,8 @@ public class LevelsTable : MonoBehaviour
 						levels.Add (tableLevelComponent);//add table level component to the list
 				}
 
+
+
 				if (levelsManagerComponent.levels.Count == 0) {
 						Debug.Log ("There are no Levels in this Mission");
 				} else {

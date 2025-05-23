@@ -156,7 +156,9 @@ public class GameManager : MonoBehaviour
 	/// </summary>
 	public static GameManager instance;
 
-	void Awake(){
+	public static bool isShowingRateDialog = false;
+	public static int levelShowRate = 5;
+    void Awake(){
 		if (instance == null) {
 			instance = this;
 		}
@@ -177,8 +179,10 @@ public class GameManager : MonoBehaviour
 		if (gridCellsRectTransform == null) {
 			gridCellsRectTransform = gridCellsTransform.GetComponent<RectTransform> ();
 		}
-			
-		try {
+
+
+
+        try {
 			//Setting up Attributes
 			numberOfRows = Mission.selectedMission.rowsNumber;
 			numberOfColumns = Mission.selectedMission.colsNumber;
@@ -189,11 +193,11 @@ public class GameManager : MonoBehaviour
 			Debug.Log (ex.Message);
 		}
 
-		//Create New level (the selected level)
-		CreateNewLevel ();
-	
-		//Check whether the current level is completed or not
-		CheckLevelComplete ();
+        //Create New level (the selected level)
+        CreateNewLevel();
+
+        //Check whether the current level is completed or not
+        CheckLevelComplete ();
 	}
 
 	/// <summary>
@@ -272,10 +276,21 @@ public class GameManager : MonoBehaviour
 			SetLevelTitleText();
 			currentLevel = Mission.selectedMission.levelsManagerComponent.levels [TableLevel.selectedLevel.ID - 1];
 			currentLevelData = currentMissionData.FindLevelDataById (TableLevel.selectedLevel.ID);
+            ActiveRateDialog();
+            if (!isShowingRateDialog)
+            {
+                BuildTheGrid();
+            }
+            else
+            {
+                RateDialog.instance.onCloseRateDialog = () =>
+                {
+                    BuildTheGrid();
+                };
+            }
 
-			BuildTheGrid ();
-			//AdsManager.instance.HideAdvertisment ();
-		} catch (Exception ex) {
+            //AdsManager.instance.HideAdvertisment ();
+        } catch (Exception ex) {
 			Debug.LogWarning ("Make sure you have selected a level, and there are no empty references in GameManager component");
 		}
 	}
@@ -285,10 +300,10 @@ public class GameManager : MonoBehaviour
 	/// </summary>
 	private void BuildTheGrid ()
 	{
-		Debug.Log ("Setting up the Grid " + numberOfRows + "x" + numberOfColumns);
 
-		//Calculate the cell size 
-		float cellSize = Math.Min (gridCellsRectTransform.rect.width * 1.0f / numberOfColumns, gridCellsRectTransform.rect.height * 1.0f / numberOfRows);
+        Debug.Log("Setting up the Grid " + numberOfRows + "x" + numberOfColumns);
+        //Calculate the cell size 
+        float cellSize = Math.Min (gridCellsRectTransform.rect.width * 1.0f / numberOfColumns, gridCellsRectTransform.rect.height * 1.0f / numberOfRows);
 			
 		//Calculate the horizontal margin of the grid
 		Vector3 tempPos = gridCellsRectTransform.anchoredPosition;
@@ -491,7 +506,7 @@ public class GameManager : MonoBehaviour
 				}
 			}
 			TableLevel.selectedLevel = LevelsTable.levels [TableLevel.selectedLevel.ID];//Set the selected level
-			UIEvents.instance.LoadGameScene();
+            UIEvents.instance.LoadGameScene();
 
 		} else {
 			//Play lock sound effectd
@@ -563,11 +578,14 @@ public class GameManager : MonoBehaviour
 			WinDialog.instance.SetTime (Timer_origin.instance.timeInSeconds);
 			WinDialog.instance.SetBestScore (currentLevelData.bestScore);
 
-			AdsManager.ins.ShowInterstitial();
-			//Show win dialog
-			WinDialog.instance.Invoke("Show",2);
-			Debug.Log ("Level completed");
-		}
+
+            //Show win dialog
+            WinDialog.instance.Invoke("Show", 2);
+            Debug.Log("Level completed");
+
+
+
+        }
 	}
 
 	/// <summary>
@@ -678,4 +696,23 @@ public class GameManager : MonoBehaviour
         GameObject.Find ("TimeOutDialog").GetComponent<Dialog> ().Show (false);
 		//Debug.Log ("TimeOut");
 	}
+    public void ActiveRateDialog()
+    {
+        if (TableLevel.selectedLevel.ID == levelShowRate)
+        {
+            isShowingRateDialog = true;
+        }
+        else
+        {
+			isShowingRateDialog = false;
+            Debug.Log("Level not reached");
+        }
+
+
+        if (RateDialog.instance != null)
+        {
+            Debug.Log("Showing rate dialog");
+            RateDialog.instance.ShowRateDialog();
+        }
+    }
 }

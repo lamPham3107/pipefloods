@@ -71,7 +71,9 @@ public class WinDialog : MonoBehaviour
 	/// </summary>
 	public static WinDialog instance;
 
-	void Awake ()
+
+
+    void Awake ()
 	{
 		if (instance == null) {
 			instance = this;
@@ -243,7 +245,9 @@ public class WinDialog : MonoBehaviour
 			return;
 		}
 		levelTitle.text = value;
-	}
+
+
+    }
 
 	/// <summary>
 	/// Set the score.
@@ -312,4 +316,5 @@ public class WinDialog : MonoBehaviour
 
 		return DataManager.LevelData.StarsNumber.ZERO;
 	}
+
 }
