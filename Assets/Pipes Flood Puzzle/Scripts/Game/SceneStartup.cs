@@ -17,25 +17,53 @@ public class SceneStartup : MonoBehaviour
 
 	public void ShowAd ()
 	{
-		//if (SceneManager.GetActiveScene ().name == "Main") {
-		//	AdsManager.instance.ShowAdvertisment (AdPackage.AdEvent.Event.ON_LOAD_MAIN_SCENE);
-		//} else if (SceneManager.GetActiveScene ().name == "Options") {
-		//	AdsManager.instance.ShowAdvertisment (AdPackage.AdEvent.Event.ON_LOAD_OPTIONS_SCENE);
-		//} else if (SceneManager.GetActiveScene ().name == "HowToPlay") {
-		//	AdsManager.instance.ShowAdvertisment (AdPackage.AdEvent.Event.ON_LOAD_HTP_SCENE);
-		//} else if (SceneManager.GetActiveScene ().name == "Missions") {
-		//	AdsManager.instance.ShowAdvertisment (AdPackage.AdEvent.Event.ON_LOAD_MISSIONS_SCENE);
-		//} else if (SceneManager.GetActiveScene ().name == "Levels") {
-		//	AdsManager.instance.ShowAdvertisment (AdPackage.AdEvent.Event.ON_LOAD_LEVELS_SCENE);
-		//} else if (SceneManager.GetActiveScene ().name == "Game") {
-		//	AdsManager.instance.ShowAdvertisment (AdPackage.AdEvent.Event.ON_LOAD_GAME_SCENE);
-		//} else if (SceneManager.GetActiveScene ().name == "About") {
-		//	AdsManager.instance.ShowAdvertisment (AdPackage.AdEvent.Event.ON_LOAD_ABOUT_SCENE);
-		//}
-	}
+        if (SceneManager.GetActiveScene().name == "Main")
+        {
+        }
+        else if (SceneManager.GetActiveScene().name == "Options")
+        {
+            AdsManager.ins.ShowMrec(true);
+        }
+        else if (SceneManager.GetActiveScene().name == "HowToPlay")
+        {
+        }
+        else if (SceneManager.GetActiveScene().name == "Missions")
+        {
+        }
+        else if (SceneManager.GetActiveScene().name == "Levels")
+        {
+        }
+        else if (SceneManager.GetActiveScene().name == "Game")
+        {
+        }
+        else if (SceneManager.GetActiveScene().name == "About")
+        {
+        }
+    }
 
 	void OnDestroy ()
 	{
-		//AdsManager.instance.HideAdvertisment ();
-	}
+        if (SceneManager.GetActiveScene().name == "Main")
+        {
+        }
+        else if (SceneManager.GetActiveScene().name == "Options")
+        {
+            AdsManager.ins.HideMrec(true);
+        }
+        else if (SceneManager.GetActiveScene().name == "HowToPlay")
+        {
+        }
+        else if (SceneManager.GetActiveScene().name == "Missions")
+        {
+        }
+        else if (SceneManager.GetActiveScene().name == "Levels")
+        {
+        }
+        else if (SceneManager.GetActiveScene().name == "Game")
+        {
+        }
+        else if (SceneManager.GetActiveScene().name == "About")
+        {
+        }
+    }
 }
