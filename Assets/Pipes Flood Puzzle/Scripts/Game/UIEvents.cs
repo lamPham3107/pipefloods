@@ -236,7 +236,15 @@ public class UIEvents : MonoBehaviour
 	public void LoadGameScene ()
 	{
 		AudioClips.instance.PlayButtonClickSFX ();
-        StartCoroutine (SceneLoader.LoadSceneAsync ("Game"));
+		if(!PlayerPrefs.HasKey("first_win_level_" + TableLevel.selectedLevel.ID) && GameManager.restart_times > 0)
+		{
+			GameManager.restart_times++;
+		}
+		else if(!PlayerPrefs.HasKey("first_win_level_" + TableLevel.selectedLevel.ID) && GameManager.restart_times == 0)
+		{
+            GameManager.restart_times = 1;
+        }
+            StartCoroutine (SceneLoader.LoadSceneAsync ("Game"));
 
 	}
 	public void closeRateDialog()

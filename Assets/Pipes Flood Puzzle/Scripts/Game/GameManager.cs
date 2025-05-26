@@ -158,6 +158,7 @@ public class GameManager : MonoBehaviour
 
 	public static bool isShowingRateDialog = false;
 	public static int levelShowRate = 5;
+	public static int restart_times;
     void Awake(){
 		if (instance == null) {
 			instance = this;
@@ -273,9 +274,11 @@ public class GameManager : MonoBehaviour
 		try {
 			currentLevelScore = 0;
 			currentLevelTitle = "Level " + TableLevel.selectedLevel.ID;
-			SetLevelTitleText();
+            SetLevelTitleText();
 			currentLevel = Mission.selectedMission.levelsManagerComponent.levels [TableLevel.selectedLevel.ID - 1];
 			currentLevelData = currentMissionData.FindLevelDataById (TableLevel.selectedLevel.ID);
+            FirebaseEvent.ins.E_levelStart(TableLevel.selectedLevel.ID, Mission.selectedMission.ID.ToString());
+
             ActiveRateDialog();
             if (!isShowingRateDialog)
             {
@@ -577,7 +580,13 @@ public class GameManager : MonoBehaviour
 			WinDialog.instance.SetLevelTitle (currentLevelTitle);
 			WinDialog.instance.SetTime (Timer_origin.instance.timeInSeconds);
 			WinDialog.instance.SetBestScore (currentLevelData.bestScore);
+            FirebaseEvent.ins.E_levelComplete(TableLevel.selectedLevel.ID, Mission.selectedMission.ID.ToString(), restart_times - 1);
 
+            if (!PlayerPrefs.HasKey("first_win_level_" + TableLevel.selectedLevel.ID))
+            {
+                PlayerPrefs.SetInt("first_win_level_" + TableLevel.selectedLevel.ID, 1); 
+                PlayerPrefs.Save();
+            }
 
             //Show win dialog
             WinDialog.instance.Invoke("Show", 2);
