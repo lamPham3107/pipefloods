@@ -16,6 +16,8 @@ namespace AppLovinMax.Scripts.IntegrationManager.Editor
 {
     public abstract class AppLovinPreProcess
     {
+        // Use a slightly lower value than max value so pubs have the option to run a post process script after ours.
+        internal const int CallbackOrder = int.MaxValue - 10;
         private const string AppLovinDependenciesFileExportPath = "MaxSdk/AppLovin/Editor/Dependencies.xml";
         private const string ElementNameDependencies = "dependencies";
 
@@ -155,6 +157,14 @@ namespace AppLovinMax.Scripts.IntegrationManager.Editor
         {
             try
             {
+                // Ensure directory exists before saving the file
+                var directory = Path.GetDirectoryName(path);
+                if (MaxSdkUtils.IsValidString(directory))
+                {
+                    // Does nothing if directory already exists
+                    Directory.CreateDirectory(directory);
+                }
+
                 using (var xmlWriter = XmlWriter.Create(path, DependenciesFileXmlWriterSettings))
                 {
                     doc.Save(xmlWriter);

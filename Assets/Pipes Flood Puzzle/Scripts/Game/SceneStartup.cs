@@ -52,6 +52,7 @@ public class SceneStartup : MonoBehaviour
         }
         else if (SceneManager.GetActiveScene().name == "HowToPlay")
         {
+            AdsManager.ins.ShowInterstitial();
         }
         else if (SceneManager.GetActiveScene().name == "Missions")
         {

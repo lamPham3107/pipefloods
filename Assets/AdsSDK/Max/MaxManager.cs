@@ -42,7 +42,7 @@ public class MaxManager : SingletonMonoBehaviour<MaxManager>
             InitializeInterstitialAds();
             InitializeRewardedAds();
             //InitializeBannerAds();
-            //InitializeMRecAds();
+            InitializeMRecAds();
             //MaxSdk.ShowMediationDebugger();
         };
         MaxSdk.InitializeSdk();

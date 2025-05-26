@@ -17,6 +17,7 @@ public class AdsManager : SingletonMonoBehaviour<AdsManager>
 
     private void OnEnable()
     {
+        Screen.sleepTimeout = SleepTimeout.NeverSleep;
         SetupAds();
     }
 
@@ -154,6 +155,7 @@ public class AdsManager : SingletonMonoBehaviour<AdsManager>
     #region Banner
     public void ShowBanner()
     {
+        if (AdsSDK.ins.isMkt) return;
         if (AdsSDK.ins.isNoAds) return;
 
         if(AdsSDK.ins.bannerMediationNetwork.Equals(AdsMediation.ADMOB.ToString()))
@@ -187,6 +189,7 @@ public class AdsManager : SingletonMonoBehaviour<AdsManager>
 
     public void ShowAOA()
     {
+        if (AdsSDK.ins.isMkt) return;
         if (AdsSDK.ins.isNoAds) return;
         Debug.Log("Show AOA");
         FirebaseManager.ins.LogEvent("af_AOA_attempt");
@@ -221,6 +224,7 @@ public class AdsManager : SingletonMonoBehaviour<AdsManager>
     #region Mrec
     public void ShowMrec(bool isHideBanner)
     {
+        if (AdsSDK.ins.isMkt) return;
         if (isHideBanner) HideBanner();
         MaxManager.ins.ShowMrec();
     }
