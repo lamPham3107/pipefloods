@@ -236,15 +236,12 @@ public class UIEvents : MonoBehaviour
 	public void LoadGameScene ()
 	{
 		AudioClips.instance.PlayButtonClickSFX ();
-		if(!PlayerPrefs.HasKey("first_win_level_" + TableLevel.selectedLevel.ID) && GameManager.restart_times > 0)
+		if(!PlayerPrefs.HasKey("first_win_level_" + TableLevel.selectedLevel.ID) && GameManager.restart_times >= 0)
 		{
+			FirebaseEvent.ins.E_levelRevive(TableLevel.selectedLevel.ID);
 			GameManager.restart_times++;
 		}
-		else if(!PlayerPrefs.HasKey("first_win_level_" + TableLevel.selectedLevel.ID) && GameManager.restart_times == 0)
-		{
-            GameManager.restart_times = 1;
-        }
-            StartCoroutine (SceneLoader.LoadSceneAsync ("Game"));
+        StartCoroutine (SceneLoader.LoadSceneAsync ("Game"));
 
 	}
 	public void closeRateDialog()
@@ -255,4 +252,5 @@ public class UIEvents : MonoBehaviour
 	{
         RateDialog.instance.Submit();
     }
+
 }

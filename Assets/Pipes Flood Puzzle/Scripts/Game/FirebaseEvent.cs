@@ -29,7 +29,6 @@ public class FirebaseEvent : MonoBehaviour
         if (!FirebaseManager.ins.is_remote_config_done) return;
         try
         {
-            Debug.Log("First win: " + PlayerPrefs.HasKey("first_win_level_" + level));
             if (!PlayerPrefs.HasKey("first_win_level_" + level))
             {
                 FirebaseAnalytics.LogEvent("level_start", new Parameter[] {
@@ -37,7 +36,7 @@ public class FirebaseEvent : MonoBehaviour
                     new Parameter("mode", mode),
                     new Parameter("day", GameHelper.GetUserLoginDay()),
                 });
-                Debug.Log("Log level start: " + level + " mode: " + mode + " day: " + GameHelper.GetUserLoginDay());
+
             }
         }
         catch
@@ -50,7 +49,7 @@ public class FirebaseEvent : MonoBehaviour
         if (!FirebaseManager.ins.is_remote_config_done) return;
         try
         {
-            Debug.Log("First win: " + PlayerPrefs.HasKey("first_win_level_" + level));
+
             if (!PlayerPrefs.HasKey("first_win_level_" + level))
             {
                 FirebaseAnalytics.LogEvent("level_complete", new Parameter[] {
@@ -59,7 +58,7 @@ public class FirebaseEvent : MonoBehaviour
                     new Parameter("day", GameHelper.GetUserLoginDay()),
                     new Parameter("restart",restart),
                 });
-                Debug.Log("Log level complete: " + level + " mode: " + mode + " day: " + GameHelper.GetUserLoginDay() + " restart: " + restart);
+
             }
         }
         catch
@@ -103,15 +102,15 @@ public class FirebaseEvent : MonoBehaviour
         {
         }
     }
-    public void E_openGame(int times, string mode)
+    public void E_openGame(int times)
     {
         if (!FirebaseManager.ins.is_remote_config_done) return;
         try
         {
             FirebaseAnalytics.LogEvent("open_game", new Parameter[] {
                 new Parameter("times", times.ToString()),
-                new Parameter("mode", mode),
-                new Parameter("day", GameHelper.GetUserLoginDay()),
+                new Parameter("day_login", GameHelper.GetUserLoginDay()),
+                new Parameter("day", "D" + GameHelper.GetDayNow.ToString()),
             });
         }
         catch

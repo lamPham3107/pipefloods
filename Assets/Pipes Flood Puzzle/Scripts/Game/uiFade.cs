@@ -22,6 +22,7 @@ public class uiFade : SingletonMonoBehaviour<uiFade>
 
     public void FadeIn(float time = 0.75f)
     {
+
         timer = 0;
         canvasGroup.alpha = 0;
         canvasGroup.DOFade(1, time)

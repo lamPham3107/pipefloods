@@ -159,6 +159,7 @@ public class GameManager : MonoBehaviour
 	public static bool isShowingRateDialog = false;
 	public static int levelShowRate = 5;
 	public static int restart_times;
+
     void Awake(){
 		if (instance == null) {
 			instance = this;
@@ -584,16 +585,14 @@ public class GameManager : MonoBehaviour
 
             if (!PlayerPrefs.HasKey("first_win_level_" + TableLevel.selectedLevel.ID))
             {
-                PlayerPrefs.SetInt("first_win_level_" + TableLevel.selectedLevel.ID, 1); 
+                PlayerPrefs.SetInt("first_win_level_" + TableLevel.selectedLevel.ID, 1);
+                restart_times = 0;
                 PlayerPrefs.Save();
             }
 
             //Show win dialog
             WinDialog.instance.Invoke("Show", 2);
             Debug.Log("Level completed");
-
-
-
         }
 	}
 
@@ -702,6 +701,7 @@ public class GameManager : MonoBehaviour
 		//show time out dialog
 		//AdsManager.instance.ShowAdvertisment (AdPackage.AdEvent.Event.ON_SHOW_TIMEOUT_DIALOG);
 		AdsManager.ins.ShowInterstitial();
+        FirebaseEvent.ins.E_levelFail(TableLevel.selectedLevel.ID, Mission.selectedMission.ID.ToString(), "TimeOut");
         GameObject.Find ("TimeOutDialog").GetComponent<Dialog> ().Show (false);
 		//Debug.Log ("TimeOut");
 	}
@@ -723,5 +723,9 @@ public class GameManager : MonoBehaviour
             Debug.Log("Showing rate dialog");
             RateDialog.instance.ShowRateDialog();
         }
+    }
+    private void OnApplicationQuit()
+    {
+		FirebaseEvent.ins.E_levelFail(TableLevel.selectedLevel.ID, Mission.selectedMission.ID.ToString(), "QuitGame");
     }
 }

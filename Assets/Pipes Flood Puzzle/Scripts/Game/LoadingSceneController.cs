@@ -9,8 +9,9 @@ public class LoadingSceneController : MonoBehaviour
     public string sceneToLoad = "Main";
     public Slider progressBar;
     public TMP_Text progressText;
-
     private float loadingSpeed = 0.2f;
+    private const string LoginCountKey = "login_count";
+
     void Start()
     {
         StartCoroutine(LoadAsyncScene());
@@ -50,11 +51,12 @@ public class LoadingSceneController : MonoBehaviour
         yield return new WaitForSeconds(0.5f); // Optional
 
         AdsManager.ins.ShowAOA();
-
+        CheckLogin();
         uiFade.ins.FadeInOut(() =>
         {
             operation.allowSceneActivation = true;
             AdsManager.ins.ShowBanner();
+            
         }, 0.75f);
     }
 
@@ -68,6 +70,15 @@ public class LoadingSceneController : MonoBehaviour
         if (progressText != null)
             progressText.text = Mathf.RoundToInt(progress * 100f) + "/100";
     }
-
+    public void CheckLogin()
+    {
+        // lay so lan dang nhap , mac dinh la 0 neu chua dang nhap
+        int count = PlayerPrefs.GetInt(LoginCountKey, 0);
+        count++;
+        PlayerPrefs.SetInt(LoginCountKey, count);
+        PlayerPrefs.Save();
+        FirebaseEvent.ins.E_openGame(count);
+        Debug.Log("Login Count: " + count);
+    }
 
 }
