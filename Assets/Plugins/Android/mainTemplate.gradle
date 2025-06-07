@@ -31,6 +31,10 @@ dependencies {
     implementation 'com.google.firebase:firebase-config-unity:12.6.0' // Assets/Firebase/Editor/RemoteConfigDependencies.xml:20
     implementation 'com.google.firebase:firebase-crashlytics-ndk:19.4.0' // Assets/Firebase/Editor/CrashlyticsDependencies.xml:13
     implementation 'com.google.firebase:firebase-crashlytics-unity:12.6.0' // Assets/Firebase/Editor/CrashlyticsDependencies.xml:20
+    implementation 'com.google.firebase:firebase-iid:21.1.0' // Assets/Firebase/Editor/MessagingDependencies.xml:17
+    implementation 'com.google.firebase:firebase-messaging:24.1.0' // Assets/Firebase/Editor/MessagingDependencies.xml:13
+    implementation 'com.google.firebase:firebase-messaging-unity:12.6.0' // Assets/Firebase/Editor/MessagingDependencies.xml:24
+    implementation 'com.google.flatbuffers:flatbuffers-java:1.12.0' // Assets/Firebase/Editor/MessagingDependencies.xml:19
     implementation 'com.squareup.picasso:picasso:2.71828' // Assets/MaxSdk/Mediation/InMobi/Editor/Dependencies.xml:5
 // Android Resolver Dependencies End
 **DEPS**}

@@ -230,13 +230,17 @@ public class UIEvents : MonoBehaviour
 	public void LoadLevelsScene ()
 	{
 		AudioClips.instance.PlayButtonClickSFX ();
-		StartCoroutine (SceneLoader.LoadSceneAsync ("Levels"));
+		AudioClips.instance.StopGameMusic();
+        AudioClips.instance.PlayBackgroundMusic();
+        StartCoroutine (SceneLoader.LoadSceneAsync ("Levels"));
 	}
 
 	public void LoadGameScene ()
 	{
 		AudioClips.instance.PlayButtonClickSFX ();
-		if(!PlayerPrefs.HasKey("first_win_level_" + TableLevel.selectedLevel.ID) && GameManager.restart_times >= 0)
+		AudioClips.instance.StopBackgroundMusic();
+        AudioClips.instance.PlayGameMusic();
+        if (!PlayerPrefs.HasKey("first_win_level_" + TableLevel.selectedLevel.ID) && GameManager.restart_times >= 0)
 		{
 			FirebaseEvent.ins.E_levelRevive(TableLevel.selectedLevel.ID);
 			GameManager.restart_times++;

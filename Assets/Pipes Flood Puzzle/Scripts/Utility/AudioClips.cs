@@ -22,7 +22,7 @@ public class AudioClips : MonoBehaviour
 	public AudioClip completedSFX;
 	public AudioClip rotateSFX;
 	public AudioClip counterSFX;
-
+	public AudioClip gameMusic;
 	void Awake ()
 	{
 		if (instance == null) {
@@ -41,9 +41,19 @@ public class AudioClips : MonoBehaviour
 
 	public void PlayBackgroundMusic ()
 	{
-		AudioSources.instance.MusicAudioSource ().clip = backgroundMusic;
-		AudioSources.instance.MusicAudioSource ().Play ();
+		if(AudioSources.instance.MusicAudioSource().clip != backgroundMusic)
+        {
+            AudioSources.instance.MusicAudioSource().clip = backgroundMusic;
+            AudioSources.instance.MusicAudioSource().Play();
+        }
 	}
+	public void StopBackgroundMusic()
+	{
+		if(AudioSources.instance.MusicAudioSource().clip == backgroundMusic)
+		{
+            AudioSources.instance.MusicAudioSource().Stop();
+        }
+    }
 
 	public void PlayIncreaseSFX ()
 	{
@@ -78,4 +88,22 @@ public class AudioClips : MonoBehaviour
 	{
 		AudioSources.instance.PlaySFXClip (buttonClickSFX, false);
 	}
+	public void PlayGameMusic()
+	{
+		if(AudioSources.instance.MusicAudioSource().clip != gameMusic)
+        {
+            AudioSources.instance.MusicAudioSource().clip = gameMusic;
+            AudioSources.instance.MusicAudioSource().Play();
+        }
+
+
+    }
+	public void StopGameMusic()
+	{
+		if(AudioSources.instance.MusicAudioSource().clip == gameMusic)
+        {
+            AudioSources.instance.MusicAudioSource().Stop();
+        }
+
+    }
 }

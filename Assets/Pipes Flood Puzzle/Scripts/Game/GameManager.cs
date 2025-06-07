@@ -657,7 +657,8 @@ public class GameManager : MonoBehaviour
 		//AdsManager.instance.ShowAdvertisment (AdPackage.AdEvent.Event.ON_SHOW_PAUSE_DIALOG);
 		Timer_origin.instance.Pause ();
 		isRunning = false;
-		GameObject.Find ("PauseDialog").GetComponent<Dialog> ().Show (true);
+		PauseDialog.ins.ShowPauseDialog();
+		//GameObject.Find ("PauseDialog").GetComponent<Dialog> ().Show (true);
 	}
 
 	/// <summary>
@@ -665,7 +666,8 @@ public class GameManager : MonoBehaviour
 	/// </summary>
 	public void Resume(){
 		Timer_origin.instance.Resume ();
-		GameObject.Find ("PauseDialog").GetComponent<Dialog> ().Hide (true);
+		PauseDialog.ins.HidePauseDialog();
+        //GameObject.Find ("PauseDialog").GetComponent<Dialog> ().Hide (true);
 		isRunning = true;
 	}
 

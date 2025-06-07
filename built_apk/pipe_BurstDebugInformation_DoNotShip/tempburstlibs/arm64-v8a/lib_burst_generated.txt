@@ -14,6 +14,7 @@ Library: G:\unity_project\pipesflood\Temp\BurstOutput\tempburstlibs\arm64-v8a\li
 --assembly-defines=Firebase.Analytics;
 --assembly-defines=Firebase.App;
 --assembly-defines=Firebase.Crashlytics;
+--assembly-defines=Firebase.Messaging;
 --assembly-defines=Firebase.Platform;
 --assembly-defines=Firebase.RemoteConfig;
 --assembly-defines=Firebase.TaskExtension;

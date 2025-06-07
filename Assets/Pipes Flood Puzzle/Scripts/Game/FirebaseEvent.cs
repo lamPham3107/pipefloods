@@ -29,6 +29,7 @@ public class FirebaseEvent : MonoBehaviour
         if (!FirebaseManager.ins.is_remote_config_done) return;
         try
         {
+            
             if (!PlayerPrefs.HasKey("first_win_level_" + level))
             {
                 FirebaseAnalytics.LogEvent("level_start", new Parameter[] {
@@ -36,7 +37,7 @@ public class FirebaseEvent : MonoBehaviour
                     new Parameter("mode", mode),
                     new Parameter("day", GameHelper.GetUserLoginDay()),
                 });
-
+                Debug.Log("Log level_start event for level: " + level + ", mode: " + mode);
             }
         }
         catch
@@ -58,7 +59,7 @@ public class FirebaseEvent : MonoBehaviour
                     new Parameter("day", GameHelper.GetUserLoginDay()),
                     new Parameter("restart",restart),
                 });
-
+                Debug.Log("Log level_complete event for level: " + level + ", mode: " + mode + ", restart: " + restart);
             }
         }
         catch
@@ -112,6 +113,7 @@ public class FirebaseEvent : MonoBehaviour
                 new Parameter("day_login", GameHelper.GetUserLoginDay()),
                 new Parameter("day", "D" + GameHelper.GetDayNow.ToString()),
             });
+            Debug.Log("Log open_game event with times: " + times);
         }
         catch
         {
