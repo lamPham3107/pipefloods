@@ -31,6 +31,7 @@ public class Group : MonoBehaviour
 				levelsGroup.GetComponent<Group> ().Index = groupIndex;
 				levelsGroup.GetComponent<GridLayoutGroup> ().constraint = GridLayoutGroup.Constraint.FixedColumnCount;
 				levelsGroup.GetComponent<GridLayoutGroup> ().constraintCount = columnsPerGroup;
+				levelsGroup.GetComponent<GridLayoutGroup> ().cellSize = new Vector2(70, 80);
 				return levelsGroup;
 		}
 }
