@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 using UnityEngine.UI;
+using static UnityEngine.Networking.UnityWebRequest;
 
 ///Developed By Indie Studio
 ///https://assetstore.unity.com/publishers/9268
@@ -159,7 +160,7 @@ public class GameManager : MonoBehaviour
 	public static bool isShowingRateDialog = false;
 	public static int levelShowRate = 5;
 	public static int restart_times;
-
+    public (int highestUnlockedMissionID, int highestUnlockedLevelID) resultMaxMissionAndLevel;
     void Awake(){
 		if (instance == null) {
 			instance = this;
@@ -181,7 +182,7 @@ public class GameManager : MonoBehaviour
 		if (gridCellsRectTransform == null) {
 			gridCellsRectTransform = gridCellsTransform.GetComponent<RectTransform> ();
 		}
-
+		resultMaxMissionAndLevel = DataManager.instance.GetHighestUnlockedMissionAndLevel();
 
 
         try {
@@ -191,7 +192,9 @@ public class GameManager : MonoBehaviour
 			grid.name = numberOfRows + "x" + numberOfColumns + "-Grid";
 			//get current Mission data
 			currentMissionData = DataManager.FindMissionDataById (Mission.selectedMission.ID, DataManager.instance.filterdMissionsData);
-		} catch (Exception ex) {
+
+
+        } catch (Exception ex) {
 			Debug.Log (ex.Message);
 		}
 
@@ -279,7 +282,9 @@ public class GameManager : MonoBehaviour
 			currentLevel = Mission.selectedMission.levelsManagerComponent.levels [TableLevel.selectedLevel.ID - 1];
 			currentLevelData = currentMissionData.FindLevelDataById (TableLevel.selectedLevel.ID);
             FirebaseEvent.ins.E_levelStart(TableLevel.selectedLevel.ID, Mission.selectedMission.ID.ToString());
-
+            PlayerPrefs.SetInt("HighestMissionID", resultMaxMissionAndLevel.highestUnlockedMissionID);
+            PlayerPrefs.SetInt("HighestLevelID", resultMaxMissionAndLevel.highestUnlockedLevelID);
+            PlayerPrefs.Save();
             ActiveRateDialog();
             if (!isShowingRateDialog)
             {

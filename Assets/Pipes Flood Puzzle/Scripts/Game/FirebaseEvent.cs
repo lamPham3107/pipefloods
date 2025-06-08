@@ -20,121 +20,144 @@ public class FirebaseEvent : MonoBehaviour
     }
     public void LogEvent(string name)
     {
-        if (!FirebaseManager.ins.is_remote_config_done) return;
-        FirebaseAnalytics.LogEvent(name);
+        if (!Debug.isDebugBuild && !Application.isEditor)
+        {
+            FirebaseAnalytics.LogEvent(name);
+        }
+
     }
     #region other
     public void E_levelStart(int level, string mode)
     {
-        if (!FirebaseManager.ins.is_remote_config_done) return;
-        try
+        if (!Debug.isDebugBuild && !Application.isEditor)
         {
-            
-            if (!PlayerPrefs.HasKey("first_win_level_" + level))
+            try
             {
-                FirebaseAnalytics.LogEvent("level_start", new Parameter[] {
+
+                if (!PlayerPrefs.HasKey("first_win_level_" + level))
+                {
+                    FirebaseAnalytics.LogEvent("level_start", new Parameter[] {
                     new Parameter("level", level.ToString()),
                     new Parameter("mode", mode),
                     new Parameter("day", GameHelper.GetUserLoginDay()),
                 });
-                Debug.Log("Log level_start event for level: " + level + ", mode: " + mode);
+                    Debug.Log("Log level_start event for level: " + level + ", mode: " + mode);
+                }
+            }
+            catch
+            {
+
             }
         }
-        catch
-        {
 
-        }
     }
     public void E_levelComplete(int level, string mode, int restart)
     {
-        if (!FirebaseManager.ins.is_remote_config_done) return;
-        try
+        if (!Debug.isDebugBuild && !Application.isEditor)
         {
-
-            if (!PlayerPrefs.HasKey("first_win_level_" + level))
+            try
             {
-                FirebaseAnalytics.LogEvent("level_complete", new Parameter[] {
+
+                if (!PlayerPrefs.HasKey("first_win_level_" + level))
+                {
+                    FirebaseAnalytics.LogEvent("level_complete", new Parameter[] {
                     new Parameter("level", level.ToString()),
                     new Parameter("mode", mode),
                     new Parameter("day", GameHelper.GetUserLoginDay()),
                     new Parameter("restart",restart),
                 });
-                Debug.Log("Log level_complete event for level: " + level + ", mode: " + mode + ", restart: " + restart);
+                    Debug.Log("Log level_complete event for level: " + level + ", mode: " + mode + ", restart: " + restart);
+                }
+            }
+            catch
+            {
+
             }
         }
-        catch
-        {
 
-        }
     }
     public void E_levelFail(int level, string mode, string reason)
     {
-        if (!FirebaseManager.ins.is_remote_config_done) return;
-        try
+        if (!Debug.isDebugBuild && !Application.isEditor)
         {
+            try
+            {
 
-            FirebaseAnalytics.LogEvent("level_fail", new Parameter[] {
+                FirebaseAnalytics.LogEvent("level_fail", new Parameter[] {
                     new Parameter("level", level.ToString()),
                     new Parameter("mode", mode),
                     new Parameter("reason", reason),
                 });
 
-        }
-        catch
-        {
+            }
+            catch
+            {
 
+            }
         }
+
     }
     public void E_timePlay(int level, string mode, int times_play)
     {
-        if (!FirebaseManager.ins.is_remote_config_done) return;
-        try
+        if (!Debug.isDebugBuild && !Application.isEditor)
         {
-            if (!PlayerPrefs.HasKey("first_win_level_" + level))
+            try
             {
-                FirebaseAnalytics.LogEvent("time_play", new Parameter[] {
+                if (!PlayerPrefs.HasKey("first_win_level_" + level))
+                {
+                    FirebaseAnalytics.LogEvent("time_play", new Parameter[] {
                 new Parameter("level", level.ToString()),
                 new Parameter("mode", mode),
                 new Parameter("times_play", times_play),
             });
+                }
+            }
+            catch
+            {
             }
         }
-        catch
-        {
-        }
+
     }
-    public void E_openGame(int times)
+    public void E_openGame(int times, int maxMissionID , int maxLevelID)
     {
-        if (!FirebaseManager.ins.is_remote_config_done) return;
-        try
+        if (!Debug.isDebugBuild && !Application.isEditor)
         {
-            FirebaseAnalytics.LogEvent("open_game", new Parameter[] {
+            try
+            {
+                FirebaseAnalytics.LogEvent("open_game", new Parameter[] {
                 new Parameter("times", times.ToString()),
                 new Parameter("day_login", GameHelper.GetUserLoginDay()),
-                new Parameter("day", "D" + GameHelper.GetDayNow.ToString()),
+                new Parameter("day", GameHelper.GetDayNow.ToString()),
+                new Parameter("max_mission" , maxMissionID.ToString() ),
+                new Parameter("max_level" , maxLevelID.ToString() ),
             });
-            Debug.Log("Log open_game event with times: " + times);
+                Debug.Log("Log open_game event with times: " + times);
+            }
+            catch
+            {
+            }
         }
-        catch
-        {
-        }
+
     }
     public void E_levelRevive(int level)
     {
-        if (!FirebaseManager.ins.is_remote_config_done) return;
-        try
+        if (!Debug.isDebugBuild && !Application.isEditor)
         {
-            if (!PlayerPrefs.HasKey("first_win_level_" + level))
+            try
             {
-                FirebaseAnalytics.LogEvent("level_revive", new Parameter[] {
+                if (!PlayerPrefs.HasKey("first_win_level_" + level))
+                {
+                    FirebaseAnalytics.LogEvent("level_revive", new Parameter[] {
                 new Parameter("level", level.ToString()),
                 });
-            }
+                }
 
+            }
+            catch
+            {
+            }
         }
-        catch
-        {
-        }
+
     }
     #endregion
 }

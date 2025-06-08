@@ -74,10 +74,14 @@ public class LoadingSceneController : MonoBehaviour
     {
         // lay so lan dang nhap , mac dinh la 0 neu chua dang nhap
         int count = PlayerPrefs.GetInt(LoginCountKey, 0);
+        int maxSavedMission = PlayerPrefs.GetInt("HighestMissionID", -1); // -1 là giá trị mặc định nếu chưa có
+        int maxSavedLevel = PlayerPrefs.GetInt("HighestLevelID", -1);
         count++;
         PlayerPrefs.SetInt(LoginCountKey, count);
         PlayerPrefs.Save();
-        FirebaseEvent.ins.E_openGame(count);
+        FirebaseEvent.ins.E_openGame(count,maxSavedMission,maxSavedLevel);
+        Debug.Log("Highest Mission ID: " + maxSavedMission);
+        Debug.Log("Highest Level ID: " + maxSavedLevel);
         Debug.Log("Login Count: " + count);
     }
 

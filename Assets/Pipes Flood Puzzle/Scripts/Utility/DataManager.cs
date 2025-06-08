@@ -593,4 +593,41 @@ public class DataManager : MonoBehaviour
 			XML
 		#endif
     };
+    /// <summary>
+    /// Trả về mission và level cao nhất mà người chơi đã mở khóa.
+    /// </summary>
+    /// <returns>Tuple chứa mission ID và level ID cao nhất đã mở khóa.</returns>
+    public (int highestUnlockedMissionID, int highestUnlockedLevelID) GetHighestUnlockedMissionAndLevel()
+    {
+        int highestMissionID = -1;
+        int highestLevelID = -1;
+
+        foreach (var mission in filterdMissionsData)
+        {
+            if (!mission.isLocked)
+            {
+                // Cập nhật mission ID cao nhất đã mở khóa
+                if (mission.ID > highestMissionID)
+                {
+                    highestMissionID = mission.ID;
+                    highestLevelID = -1; // reset level khi mission mới cao hơn xuất hiện
+                }
+
+                foreach (var level in mission.levelsData)
+                {
+                    if (!level.isLocked && mission.ID == highestMissionID)
+                    {
+                        // Chỉ cập nhật level nếu là của mission cao nhất đã được mở khóa
+                        if (level.ID > highestLevelID)
+                        {
+                            highestLevelID = level.ID;
+                        }
+                    }
+                }
+            }
+        }
+
+        return (highestMissionID, highestLevelID);
+    }
+
 }

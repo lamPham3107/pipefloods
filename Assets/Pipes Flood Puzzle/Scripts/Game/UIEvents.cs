@@ -240,10 +240,14 @@ public class UIEvents : MonoBehaviour
 		AudioClips.instance.PlayButtonClickSFX ();
 		AudioClips.instance.StopBackgroundMusic();
         AudioClips.instance.PlayGameMusic();
-        if (!PlayerPrefs.HasKey("first_win_level_" + TableLevel.selectedLevel.ID) && GameManager.restart_times >= 0)
+        if (!PlayerPrefs.HasKey("first_win_level_" + TableLevel.selectedLevel.ID))
 		{
-			FirebaseEvent.ins.E_levelRevive(TableLevel.selectedLevel.ID);
-			GameManager.restart_times++;
+			if(GameManager.restart_times >= 1)
+			{
+                FirebaseEvent.ins.E_levelRevive(TableLevel.selectedLevel.ID);
+            }
+			FirebaseEvent.ins.E_timePlay(TableLevel.selectedLevel.ID , Mission.selectedMission.ID.ToString(), GameManager.restart_times);
+            GameManager.restart_times++;
 		}
         StartCoroutine (SceneLoader.LoadSceneAsync ("Game"));
 
