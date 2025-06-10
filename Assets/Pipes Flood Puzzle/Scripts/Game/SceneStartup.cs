@@ -9,20 +9,25 @@ using UnityEngine.SceneManagement;
 
 public class SceneStartup : MonoBehaviour
 {
+
 	// Use this for initialization
 	void Start ()
 	{
-		ShowAd ();
-	}
+
+        ShowAd ();
+
+    }
 
 	public void ShowAd ()
 	{
         if (SceneManager.GetActiveScene().name == "Main")
         {
+
         }
         else if (SceneManager.GetActiveScene().name == "Options")
         {
             AdsManager.ins.ShowMrec(true);
+
         }
         else if (SceneManager.GetActiveScene().name == "HowToPlay")
         {
@@ -32,6 +37,8 @@ public class SceneStartup : MonoBehaviour
         }
         else if (SceneManager.GetActiveScene().name == "Levels")
         {
+
+            AdsManager.ins.HideMrec(true);
         }
         else if (SceneManager.GetActiveScene().name == "Game")
         {

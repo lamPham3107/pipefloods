@@ -58,6 +58,7 @@ public class AdsManager : SingletonMonoBehaviour<AdsManager>
         {
             if (ShowAdsPriority(i, placement, OnFinish))
             {
+
                 AdsManager.ins._timeWatchAdsLastest = 0;
                 AdsManager.ins.showingVideoAds = true;
                 check = true;

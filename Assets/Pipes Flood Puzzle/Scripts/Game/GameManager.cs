@@ -285,7 +285,8 @@ public class GameManager : MonoBehaviour
             PlayerPrefs.SetInt("HighestMissionID", resultMaxMissionAndLevel.highestUnlockedMissionID);
             PlayerPrefs.SetInt("HighestLevelID", resultMaxMissionAndLevel.highestUnlockedLevelID);
             PlayerPrefs.Save();
-            ActiveRateDialog();
+
+
             if (!isShowingRateDialog)
             {
                 BuildTheGrid();
@@ -714,16 +715,9 @@ public class GameManager : MonoBehaviour
 	}
     public void ActiveRateDialog()
     {
-        if (TableLevel.selectedLevel.ID == levelShowRate)
-        {
-            isShowingRateDialog = true;
-        }
-        else
-        {
-			isShowingRateDialog = false;
-            Debug.Log("Level not reached");
-        }
-
+        isShowingRateDialog = true;
+        GameManager.instance.isRunning = false;
+        Timer_origin.instance.Pause();
 
         if (RateDialog.instance != null)
         {

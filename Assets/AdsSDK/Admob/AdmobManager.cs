@@ -179,7 +179,7 @@ public class AdmobManager : SingletonMonoBehaviour<AdmobManager>
     #region BANNER ADS
 
     //Create + show banner (chỉ gọi duy nhất 1 lần)
-
+    public GameObject bannerLabel;
     public void ShowBanner()
     {
         if (_bannerView == null) LoadBannerAd();

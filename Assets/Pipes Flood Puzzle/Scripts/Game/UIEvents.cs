@@ -148,15 +148,16 @@ public class UIEvents : MonoBehaviour
 		LoadGameScene ();
 	}
 
-	public void OpenLink (string link)
+	public void OpenLink ()
 	{
-		AudioClips.instance.PlayButtonClickSFX ();
+        if (PlayerPrefs.GetInt("RateUsButtonDisabled", 0) != 1)
+        {
+            AudioClips.instance.PlayButtonClickSFX();
+            Application.OpenURL("https://play.google.com/store/apps/details?id=" + Application.identifier);
 
-        //if (string.IsNullOrEmpty (link)) {
-        //	return;
-        //}
-        //Application.OpenURL (link);
-        Application.OpenURL("https://play.google.com/store/apps/details?id=" + Application.identifier);
+        }
+
+
     }
 
 	public void GameNextButtonEvent ()
@@ -199,6 +200,14 @@ public class UIEvents : MonoBehaviour
 	{
 		AudioClips.instance.PlayButtonClickSFX ();
 		StartCoroutine (SceneLoader.LoadSceneAsync ("Main"));
+
+        if (MaxManager.ins.isShowMrec)
+		{
+			AdmobManager.ins.bannerLabel.SetActive(true);
+			AdsManager.ins.HideMrec(true);
+		}
+
+
 	}
 
 	public void LoadHowToPlayScene ()
@@ -211,15 +220,16 @@ public class UIEvents : MonoBehaviour
 	{
         AudioClips.instance.PlayButtonClickSFX();
         StartCoroutine(SceneLoader.LoadSceneAsync("Missions"));
-        Debug.Log("Load Missions Scene");
+        AdmobManager.ins.bannerLabel.SetActive(false);
         AdsManager.ins.ShowMrec(true);
     }
 
 	public void LoadOptionsScene ()
 	{
 		AudioClips.instance.PlayButtonClickSFX ();
-		StartCoroutine (SceneLoader.LoadSceneAsync ("Options"));
-	}
+        StartCoroutine (SceneLoader.LoadSceneAsync ("Options"));
+
+    }
 
 	public void LoadAboutScene ()
 	{
@@ -233,7 +243,14 @@ public class UIEvents : MonoBehaviour
 		AudioClips.instance.StopGameMusic();
         AudioClips.instance.PlayBackgroundMusic();
         StartCoroutine (SceneLoader.LoadSceneAsync ("Levels"));
-	}
+		if(MaxManager.ins.isShowMrec)
+        {
+            AdmobManager.ins.bannerLabel.SetActive(true);
+            AdsManager.ins.HideMrec(true);
+        }
+
+
+    }
 
 	public void LoadGameScene ()
 	{

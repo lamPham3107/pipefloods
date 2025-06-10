@@ -24,9 +24,18 @@ public class Hint : MonoBehaviour {
 			animator.enabled = true;
 			Invoke ("HideHint", 3);
 		} else {
-			//Set GameManager,Timer interactable
-			GameManager.instance.isRunning = true;
-			Timer_origin.instance.Run ();
+			if (PlayerPrefs.GetInt("RateDialogShown", 0) != 1 && TableLevel.selectedLevel.ID == 5 && Mission.selectedMission.ID == 1)
+			{
+				GameManager.instance.ActiveRateDialog();
+
+			}
+			else
+			{
+                //Set GameManager,Timer interactable
+                GameManager.instance.isRunning = true;
+                Timer_origin.instance.Run();
+            }
+
 		}
 	}
 

@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
@@ -15,6 +15,8 @@ public class RateDialog : MonoBehaviour
     private int selectedRating = 0;
     public Button[] stars;
     public Button submitButton;
+    private const string RateDialogShownKey = "RateDialogShown";
+    private const string RateUsButtonDisabledKey = "RateUsButtonDisabled";
 
     void Awake()
     {
@@ -34,6 +36,11 @@ public class RateDialog : MonoBehaviour
     }
     public void ShowRateDialog()
     {
+        //// Nếu đã từng hiện thì không hiện lại
+        //if (PlayerPrefs.GetInt(RateDialogShownKey, 0) == 1)
+        //{
+        //    return;
+        //}
 
         if (rateDialog != null && GameManager.isShowingRateDialog)
         {
@@ -46,11 +53,13 @@ public class RateDialog : MonoBehaviour
     }
     public void HideRateDialog()
     {
-
+        // Đánh dấu là đã show
+        PlayerPrefs.SetInt("RateDialogShown", 1);
+        PlayerPrefs.Save();
         rateDialog.SetActive(false);
         GameManager.isShowingRateDialog = false;
-        Timer_origin.instance.Resume();
         GameManager.instance.isRunning = true;
+        Timer_origin.instance.Run();
 
         if (onCloseRateDialog != null)
             onCloseRateDialog.Invoke();
@@ -59,9 +68,13 @@ public class RateDialog : MonoBehaviour
     public void Submit()
     {
 
-        // Handle the submit button click event here
-        Debug.Log("Submit button clicked!");
-
+        // Nếu >= 4 sao thì mở link đánh giá
+        if (selectedRating >= 4)
+        {
+            UIEvents.instance.OpenLink();
+        }
+        PlayerPrefs.SetInt("RateUsButtonDisabled", 1);
+        PlayerPrefs.Save();
         HideRateDialog();
 
     }

@@ -461,6 +461,7 @@ public class MaxManager : SingletonMonoBehaviour<MaxManager>
     #endregion
 
     #region Mrec Ad Methods
+    public bool isShowMrec = false;
     public void InitializeMRecAds()
     {
         // MRECs are sized to 300x250 on phones and tablets
@@ -478,7 +479,7 @@ public class MaxManager : SingletonMonoBehaviour<MaxManager>
 
     public void ShowMrec()
     {
-
+        isShowMrec = true;
         try
         {
             if (Application.isEditor
@@ -497,6 +498,7 @@ public class MaxManager : SingletonMonoBehaviour<MaxManager>
 
     public void HideMrec()
     {
+        isShowMrec = false;
         try
         {
             if (Application.isEditor

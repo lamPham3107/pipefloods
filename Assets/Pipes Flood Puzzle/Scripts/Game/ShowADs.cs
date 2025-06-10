@@ -7,7 +7,8 @@ public class ShowADs : MonoBehaviour
 
     public void ShowInter()
     {
-            AdsManager.ins.ShowInterstitial();
+
+        AdsManager.ins.ShowInterstitial();
     }
 
 
