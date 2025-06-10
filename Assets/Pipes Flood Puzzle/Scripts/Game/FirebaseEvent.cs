@@ -127,7 +127,7 @@ public class FirebaseEvent : MonoBehaviour
                 FirebaseAnalytics.LogEvent("open_game", new Parameter[] {
                 new Parameter("times", times.ToString()),
                 new Parameter("day_login", GameHelper.GetUserLoginDay()),
-                new Parameter("day", GameHelper.GetDayNow.ToString()),
+                new Parameter("time_block", GameHelper.GetBlockTime()),
                 new Parameter("max_mission" , maxMissionID.ToString() ),
                 new Parameter("max_level" , maxLevelID.ToString() ),
             });

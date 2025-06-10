@@ -350,6 +350,23 @@ public static class GameHelper
             return CurrentTimeInSecond / 86400;
         }
     }
+    public static string GetBlockTime()
+    {
+        // Lấy thời gian hiện tại theo giờ địa phương
+        System.DateTime loginTime = System.DateTime.Now;
+
+        // Tính toán index của block thời gian 30 phút gần nhất
+        int blockIndex = (loginTime.Hour * 60 + loginTime.Minute) / 30;
+
+        // Tính toán thời gian bắt đầu và kết thúc của block
+        int startHours = (blockIndex * 30) / 60;
+        int startMinutes = (blockIndex * 30) % 60;
+        int endHours = ((blockIndex + 1) * 30) / 60;
+        int endMinutes = ((blockIndex + 1) * 30) % 60;
+
+        // Định dạng chuỗi kết quả
+        return $"D{blockIndex + 1:D2} = {startHours:D2}h{startMinutes:D2} -> {endHours:D2}h{endMinutes:D2}";
+    }
     #endregion
 
     #region string
