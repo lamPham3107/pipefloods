@@ -1,6 +1,8 @@
 using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using static DataManager;
+using UnityEngine.TextCore;
 //using UnityEditor.Experimental.GraphView;
 
 ///Developed By Indie Studio
@@ -263,9 +265,15 @@ public class UIEvents : MonoBehaviour
 			{
                 FirebaseEvent.ins.E_levelRevive(TableLevel.selectedLevel.ID);
             }
-			FirebaseEvent.ins.E_timePlay(TableLevel.selectedLevel.ID , Mission.selectedMission.ID.ToString(), GameManager.restart_times);
+
             GameManager.restart_times++;
 		}
+
+        int times_play = PlayerPrefs.GetInt("Times_play", 0);
+        times_play++;
+        PlayerPrefs.SetInt("Times_play", times_play);
+        PlayerPrefs.Save();
+        FirebaseEvent.ins.E_timePlay(TableLevel.selectedLevel.ID, Mission.selectedMission.ID.ToString(), times_play);
         StartCoroutine (SceneLoader.LoadSceneAsync ("Game"));
 
 	}

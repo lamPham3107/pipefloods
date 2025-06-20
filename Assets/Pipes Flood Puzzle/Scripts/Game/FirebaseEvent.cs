@@ -58,7 +58,7 @@ public class FirebaseEvent : MonoBehaviour
             try
             {
 
-                if (!PlayerPrefs.HasKey("first_win_level_" + level))
+                if (!PlayerPrefs.HasKey("first_win_level_" + level ))
                 {
                     FirebaseAnalytics.LogEvent("level_complete", new Parameter[] {
                     new Parameter("level", level.ToString()),
@@ -103,14 +103,12 @@ public class FirebaseEvent : MonoBehaviour
         {
             try
             {
-                if (!PlayerPrefs.HasKey("first_win_level_" + level))
-                {
-                    FirebaseAnalytics.LogEvent("time_play", new Parameter[] {
+                FirebaseAnalytics.LogEvent("time_play", new Parameter[] {
                 new Parameter("level", level.ToString()),
                 new Parameter("mode", mode),
                 new Parameter("times_play", times_play),
             });
-                }
+                
             }
             catch
             {
